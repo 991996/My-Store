@@ -2,3 +2,19 @@
   font-family: "Helvetica", "Arial", sans-serif;
   overflow-x: hidden;
 }
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.mySwiper {
+  padding-bottom: 30px !important; /* يوسع المساحة الداخلية */
+}
+
+.mySwiper .swiper-scrollbar {
+  bottom: 0 !important;
+}
+
+.mySwiper .swiper-scrollbar-drag {
+  background: linear-gradient(90deg, #ffe156, #ffb5c2, #3777ff);
+}

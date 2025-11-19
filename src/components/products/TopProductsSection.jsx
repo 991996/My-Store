@@ -2,9 +2,10 @@ import { useContext } from "react";
 import ProductCard from "./ProductCard";
 import { ProductsContext } from "@/contexts/ProductsContext";
 import ColorfulLine from "../ColorfulLine";
+import ProductsSwiper from "./ProductsSwiper";
 
 function TopProductsSection() {
-  const products = useContext(ProductsContext);
+  const products = useContext(ProductsContext).slice(0, 10);
   return (
     <div className="flex flex-col justify-center items-center gap-10">
       <div className="flex flex-col gap-3">
@@ -12,12 +13,7 @@ function TopProductsSection() {
         <ColorfulLine />
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-15 px-4">
-        {products.slice(0, 4).map((p) => {
-          return <ProductCard key={p.id} product={p} />;
-        })}
-      </div>
-      <ColorfulLine />
+      <ProductsSwiper products={products} lgCount={4} mdCount={3} />
     </div>
   );
 }

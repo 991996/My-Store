@@ -2,7 +2,7 @@ import background from "@/assets/images/trends-looks.png";
 import { ProductsContext } from "@/contexts/ProductsContext";
 import { useContext } from "react";
 import ProductText from "./products/ProductText";
-import { Button } from "./ui/button";
+import Dot from "./Dot";
 import MyButton from "./MyButton";
 
 function TrendingLooksSection() {
@@ -45,13 +45,26 @@ function TrendingLooksSection() {
           <MyButton text="shop woman" />
         </div>
       </div>
-      {/* IMAGE */}
-      <img
-        src={background}
-        alt=""
+      <div
         className="absolute right-[10%] lg:right-[25%] top-[70%] sm:top-1/2 -translate-y-1/2
-        w-[50%] sm:w-[30%] lg:w-[20%] object-cover z-0"
-      />
+                w-[50%] sm:w-[30%] lg:w-[20%] z-0"
+      >
+        {/* IMAGE */}
+        <img src={background} alt="" className="w-full object-cover" />
+
+        {/* DOT man jacket*/}
+        <Dot classes="top-[25%] left-[20%]" />
+        {/* DOT man t-shirt*/}
+        <Dot classes="top-[45%] left-[30%]" />
+        {/* DOT man pants*/}
+        <Dot classes="top-[60%] left-[18%]" />
+        {/* DOT woman dress*/}
+        <Dot classes="top-[55%] left-[70%]" />
+        {/* DOT woman jacket*/}
+        <Dot classes="top-[29%] left-[79%]" />
+        {/* DOT woman shoes*/}
+        <Dot classes="top-[88%] left-[78%]" />
+      </div>
     </div>
   );
 }
