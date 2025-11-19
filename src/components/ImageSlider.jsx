@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useSwipeable } from "react-swipeable";
+import MyButton from "./MyButton";
 
 export default function ImageSlider({
   images = [],
@@ -58,15 +59,27 @@ export default function ImageSlider({
       <div className="relative h-[75vh]">
         {/* الصور */}
         {images.map((img, i) => (
-          <img
-            key={i}
-            src={img.src}
-            alt={img.alt ?? `slide-${i}`}
-            draggable={false} // يمنع سحب الصورة الافتراضي
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-              i === index ? "opacity-100" : "opacity-0 pointer-events-none"
-            }`}
-          />
+          <div key={i} className="absolute inset-0 w-full h-full">
+            {/* صورة الموبايل */}
+            <img
+              src={img.mobileImage}
+              alt={`mobile-${i}`}
+              draggable={false}
+              className={`block sm:hidden w-full h-full object-cover transition-opacity duration-500 ${
+                i === index ? "opacity-100" : "opacity-0 pointer-events-none"
+              }`}
+            />
+
+            {/* صورة الديسكتوب */}
+            <img
+              src={img.src}
+              alt={`desktop-${i}`}
+              draggable={false}
+              className={`hidden sm:block w-full h-full object-cover transition-opacity duration-500 ${
+                i === index ? "opacity-100" : "opacity-0 pointer-events-none"
+              }`}
+            />
+          </div>
         ))}
 
         {/* Overlay شفاف لالتقاط السحب (فوق الصور، تحت الكابتشن والأزرار) */}
@@ -99,13 +112,14 @@ export default function ImageSlider({
               .99
             </span>
           </div>
+          <MyButton color={images[index].buttonColor} text="Shop Now!" />
 
-          <Button
+          {/* <Button
             className={`uppercase cursor-pointer font-bold rounded-none w-[150px] md:w-[180px] lg:w-[200px] py-5 md:py-6 lg:py-7 
               text-sm md:text-base lg:text-[17px] bg-${images[index].buttonColor}`}
           >
             Shop Now!
-          </Button>
+          </Button> */}
         </div>
 
         {/* Left arrow (above overlay) */}

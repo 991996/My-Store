@@ -12,7 +12,7 @@ function TopProductsSection() {
         <ColorfulLine />
       </div>
 
-      <div className="grid grid-cols-4 gap-15 px-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-15 px-4">
         {products.slice(0, 4).map((p) => {
           return <ProductCard key={p.id} product={p} />;
         })}

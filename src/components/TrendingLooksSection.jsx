@@ -1,16 +1,24 @@
 import background from "@/assets/images/trends-looks.png";
+import { ProductsContext } from "@/contexts/ProductsContext";
+import { useContext } from "react";
+import ProductText from "./products/ProductText";
+import { Button } from "./ui/button";
+import MyButton from "./MyButton";
 
 function TrendingLooksSection() {
+  const selectedIds = [3, 4, 7];
+  const products = useContext(ProductsContext);
+  const filteredProducts = products.filter((p) => {
+    return selectedIds.includes(p.id);
+  });
   return (
-    <div className="w-screen h-[90vh] bg-mist relative">
-      <div
-        className="absolute z-20 flex flex-col gap-2 top-20 font-bold text-gray-800
-           left-45"
-      >
+    <div className="w-screen h-[140vh] sm:h-[90vh] bg-mist relative px-10 xl:px-35 py-20 overflow-hidden">
+      {/* TEXT */}
+      <div className="z-20 flex flex-col gap-2 font-bold text-gray-800 w-fit">
         <p className="text-gray-500 text-xl md:text-3xl font-thin">
           Super sale
         </p>
-        <h1 className="text-3xl md:text-4xl lg:text-[66px] uppercase">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-[66px] uppercase">
           TRENDING LOOKS
         </h1>
         <div className="flex gap-2 self-end items-center">
@@ -21,10 +29,28 @@ function TrendingLooksSection() {
           </span>
         </div>
       </div>
+      <div className="flex flex-col lg:flex-row gap-8 justify-between lg:items-center ">
+        <div>
+          {filteredProducts.map((f) => {
+            return <ProductText key={f.id} title={f.title} price={f.price} />;
+          })}
+          {filteredProducts.map((f) => {
+            return <ProductText key={f.id} title={f.title} price={f.price} />;
+          })}
+        </div>
+
+        {/* Buttons */}
+        <div className="flex flex-col gap-4">
+          <MyButton text="shop men" />
+          <MyButton text="shop woman" />
+        </div>
+      </div>
+      {/* IMAGE */}
       <img
         src={background}
         alt=""
-        className="absolute right-[25%] top-1/2 -translate-y-1/2 w-[20%] object-cover"
+        className="absolute right-[10%] lg:right-[25%] top-[70%] sm:top-1/2 -translate-y-1/2
+        w-[50%] sm:w-[30%] lg:w-[20%] object-cover z-0"
       />
     </div>
   );

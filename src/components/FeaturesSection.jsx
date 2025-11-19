@@ -25,10 +25,19 @@ function FeaturesSection() {
   ];
   return (
     <>
-      <div className="flex justify-between">
-        {featureList.map((f) => {
-          return <Feature key={f.id} feature={f} />;
-        })}
+      <div className="flex justify-center sm:justify-between">
+        {featureList.map((f, index) => (
+          <div
+            key={f.id}
+            className={`
+      ${index === 1 ? "hidden sm:block" : ""}
+      ${index === 2 ? "hidden md:block" : ""} 
+      ${index > 2 ? "hidden lg:block" : ""} 
+    `}
+          >
+            <Feature feature={f} />
+          </div>
+        ))}
       </div>
     </>
   );

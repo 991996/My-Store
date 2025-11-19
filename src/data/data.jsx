@@ -10,37 +10,41 @@ import electronics from "@/assets/images/electronics.png";
 import baby from "@/assets/images/baby.png";
 import shoes from "@/assets/images/shoes.png";
 import accessories from "@/assets/images/Accessories.png";
+import smallBG from "@/assets/images/smallBG.png";
 
 export const sliderImages = [
   {
     src: img1,
+    mobileImage: smallBG,
     alt: "Slide 1",
     caption: {
       p: "Upgrade your everyday comfort",
       h1: "casual style",
       price: "19",
     },
-    buttonColor: "blue",
+    buttonColor: "#3777ff",
   },
   {
     src: img2,
+    mobileImage: img2,
     alt: "Slide 2",
     caption: {
       p: "Spark your style",
       h1: "Everyday jewelry",
       price: "149",
     },
-    buttonColor: "peach",
+    buttonColor: "#ffbe86",
   },
   {
     src: img3,
+    mobileImage: img3,
     alt: "Slide 3",
     caption: {
       p: "Upgrade instantly",
       h1: "Smart electronics",
       price: "99",
     },
-    buttonColor: "blue",
+    buttonColor: "#3777ff",
   },
 ];
 
