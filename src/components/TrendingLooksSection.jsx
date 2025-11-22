@@ -51,19 +51,36 @@ function TrendingLooksSection() {
       >
         {/* IMAGE */}
         <img src={background} alt="" className="w-full object-cover" />
-
         {/* DOT man jacket*/}
-        <Dot classes="top-[25%] left-[20%]" />
+        <Dot
+          classes="top-[25%] left-[20%]"
+          product={products.find((p) => p.id === 3)}
+        />
         {/* DOT man t-shirt*/}
-        <Dot classes="top-[45%] left-[30%]" />
+        <Dot
+          classes="top-[45%] left-[30%]"
+          product={products.find((p) => p.id === 4)}
+        />
         {/* DOT man pants*/}
-        <Dot classes="top-[60%] left-[18%]" />
+        <Dot
+          classes="top-[60%] left-[18%]"
+          product={products.find((p) => p.id === 1)}
+        />
         {/* DOT woman dress*/}
-        <Dot classes="top-[55%] left-[70%]" />
+        <Dot
+          classes="top-[55%] left-[70%]"
+          product={products.find((p) => p.id === 18)}
+        />
         {/* DOT woman jacket*/}
-        <Dot classes="top-[29%] left-[79%]" />
+        <Dot
+          classes="top-[29%] left-[79%]"
+          product={products.find((p) => p.id === 19)}
+        />
         {/* DOT woman shoes*/}
-        <Dot classes="top-[88%] left-[78%]" />
+        <Dot
+          classes="top-[88%] left-[78%]"
+          product={products.find((p) => p.id === 20)}
+        />
       </div>
     </div>
   );
