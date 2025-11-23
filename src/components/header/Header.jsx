@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from "../Logo";
 import SearchBar from "./SearchBar";
 import SideMenu from "./SideMenu";
@@ -8,11 +8,29 @@ import { Heart, Handbag, TextAlignJustify } from "lucide-react";
 
 function Header() {
   const [sideMenu, setSideMenu] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsSticky(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
     <>
       {sideMenu ? <SideMenu onClickX={() => setSideMenu(false)} /> : <></>}
       <TopHeader />
-      <div className="flex justify-between mt-8 w-full items-center">
+      <div
+        className={`flex justify-between w-full items-center z-100 duration-300
+                      ${
+                        isSticky
+                          ? "fixed bg-white shadow-xl top-0 left-0 py-4 px-5 md:px-8 lg:px-6 xl:px-40"
+                          : " mt-8"
+                      }`}
+      >
         <div className="flex justify-center items-center gap-3">
           <TextAlignJustify
             className=" lg:hidden cursor-pointer"

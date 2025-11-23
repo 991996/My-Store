@@ -24,14 +24,14 @@ function ProductCard({ product }) {
     <>
       <div className="flex flex-col gap-3 text-gray-800">
         <div
-          className=" relative cursor-pointer aspect-square h-[300px]"
+          className=" relative cursor-pointer aspect-square"
           onMouseEnter={() => setHoverImage(true)}
           onMouseLeave={() => setHoverImage(false)}
         >
           <img
             src={product.image}
             alt="Product Image"
-            className=" object-contain w-full h-full"
+            className=" object-contain w-full aspect-square"
           />
           <div
             className={`${

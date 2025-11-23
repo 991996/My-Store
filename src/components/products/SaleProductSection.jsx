@@ -4,18 +4,18 @@ import { ProductsContext } from "@/contexts/ProductsContext";
 import ColorfulLine from "../ColorfulLine";
 import ProductsSwiper from "./ProductsSwiper";
 
-function TopProductsSection() {
-  const products = useContext(ProductsContext).filter((p) => p.rating.rate > 4);
+function SaleProductSection() {
+  const products = useContext(ProductsContext).slice(0, 10);
   return (
     <div className="flex flex-col justify-center items-center gap-10">
       <div className="flex flex-col gap-3">
-        <h1 className="text-gray-800 font-bold text-3xl px-4">Top products</h1>
+        <h1 className="text-gray-800 font-bold text-3xl px-4">Sale products</h1>
         <ColorfulLine />
       </div>
 
-      <ProductsSwiper products={products} lgCount={4} mdCount={3} />
+      <ProductsSwiper products={products} lgCount={5} mdCount={3} />
     </div>
   );
 }
 
-export default TopProductsSection;
+export default SaleProductSection;

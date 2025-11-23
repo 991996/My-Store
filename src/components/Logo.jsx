@@ -1,9 +1,15 @@
-function Logo() {
+function Logo({ color }) {
   return (
     <>
-      <span className="uppercase text-3xl lg:text-4xl font-bold bg-linear-to-r from-mustard via-cherry-blossom to-blue bg-clip-text text-transparent">
-        rk-store
-      </span>
+      {color === "white" ? (
+        <span className="uppercase text-3xl lg:text-4xl font-bold text-white">
+          rk-store
+        </span>
+      ) : (
+        <span className="uppercase text-3xl lg:text-4xl font-bold bg-linear-to-r from-mustard via-cherry-blossom to-blue bg-clip-text text-transparent">
+          rk-store
+        </span>
+      )}
     </>
   );
 }

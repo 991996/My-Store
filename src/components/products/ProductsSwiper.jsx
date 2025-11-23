@@ -12,7 +12,7 @@ export default function ProductsSwiper({ products, mdCount, lgCount }) {
     <>
       <Swiper
         spaceBetween={30}
-        slidesPerView={1}
+        slidesPerView={2}
         breakpoints={{
           640: { slidesPerView: mdCount },
           1024: { slidesPerView: lgCount },

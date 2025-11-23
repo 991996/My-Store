@@ -7,7 +7,7 @@ function SideMenu({ onClickX }) {
       {/* OverLay */}
       <div className=" fixed inset-0 z-100 bg-black/50"></div>
       <div
-        className="bg-gray-800 h-screen px-4 py-5 text-white w-[60%] fixed z-200 top-0 left-0
+        className="bg-gray-800 h-screen px-4 py-5 text-white w-[50%] fixed z-200 top-0 left-0
                        flex flex-col justify-between"
       >
         <div className="flex flex-col gap-8">

@@ -15,8 +15,8 @@ function Dot({ classes, product }) {
         </div>
 
         <div
-          className={`absolute left-6 top-1/2 -translate-y-1/2 bg-white p-3 shadow-lg w-[200px]
-           ${dotHover ? "" : "hidden"} transition-opacity duration-300 z-100`}
+          className={`absolute -left-[202px] top-1/2 -translate-y-1/2 bg-white p-3 shadow-lg w-[200px]
+           ${dotHover ? "" : "hidden"} z-100`}
         >
           {product && <ProductCard2 product={product} />}
         </div>

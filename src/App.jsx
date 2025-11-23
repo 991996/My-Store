@@ -9,6 +9,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { ProductsContext } from "./contexts/ProductsContext";
 import TrendingLooksSection from "./components/TrendingLooksSection";
+import SaleProductSection from "./components/products/SaleProductSection";
+import NewArrivalSection from "./components/products/NewArrivalSection";
+import BigSaleBar from "./components/BigSaleBar";
+import SubscribeSection from "./components/SubscribeSection";
+import Footer from "./components/Footer";
+import MobileNavigation from "./components/MobileNavigation";
 
 let cancelAxios = null;
 function App() {
@@ -53,6 +59,15 @@ function App() {
           <TopProductsSection />
         </div>
         <TrendingLooksSection />
+        <div className="max-w-7xl mx-auto py-16 px-8 flex flex-col gap-20">
+          <SaleProductSection />
+          <BigSaleBar />
+          <NewArrivalSection />
+          <SubscribeSection />
+        </div>
+        <MobileNavigation />
+        <Footer />
+        <div className="mt-15 sm:mt-0"></div>
       </ProductsContext.Provider>
     </>
   );
