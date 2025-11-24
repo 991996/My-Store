@@ -31,7 +31,7 @@ function ProductCard({ product }) {
           <img
             src={product.image}
             alt="Product Image"
-            className=" object-contain w-full aspect-square"
+            className=" object-contain w-full aspect-square bg-gray-100 p-8"
           />
           <div
             className={`${
@@ -50,7 +50,7 @@ function ProductCard({ product }) {
             </button>
           </div>
 
-          <h1 className="text-[15px]">{product.title}</h1>
+          <h1 className="text-[15px] line-clamp-2">{product.title}</h1>
           <div className="flex gap-0">{handleRate()}</div>
         </div>
         <div className="flex items-center gap-1">

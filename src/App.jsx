@@ -1,20 +1,16 @@
 import "./App.css";
 import Header from "./components/header/Header";
-import ImageSlider from "./components/ImageSlider";
 import CategoryCircle from "./components/categories/CategoryCircle";
-import { sliderImages, categories } from "./data/data";
-import FeaturesSection from "./components/FeaturesSection";
-import TopProductsSection from "./components/products/TopProductsSection";
+import { categories } from "./data/data";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { ProductsContext } from "./contexts/ProductsContext";
-import TrendingLooksSection from "./components/TrendingLooksSection";
-import SaleProductSection from "./components/products/SaleProductSection";
-import NewArrivalSection from "./components/products/NewArrivalSection";
-import BigSaleBar from "./components/BigSaleBar";
-import SubscribeSection from "./components/SubscribeSection";
+import Home from "./components/pages/Home";
+import Category from "./components/pages/Category";
+
 import Footer from "./components/Footer";
 import MobileNavigation from "./components/MobileNavigation";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 let cancelAxios = null;
 function App() {
@@ -40,35 +36,27 @@ function App() {
   }, []);
   return (
     <>
-      <ProductsContext.Provider value={products}>
-        <div className="max-w-7xl mx-auto p-8">
-          <Header />
-          <div className=" hidden lg:flex justify-between mt-5">
-            {categories.map((c) => {
-              return (
-                <CategoryCircle key={c.id} image={c.image} name={c.name} />
-              );
-            })}
+      <BrowserRouter>
+        <ProductsContext.Provider value={products}>
+          <div className="max-w-7xl mx-auto p-8">
+            <Header />
+            <div className=" hidden lg:flex justify-between mt-5">
+              {categories.map((c) => {
+                return <CategoryCircle key={c.id} category={c} />;
+              })}
+            </div>
           </div>
-        </div>
 
-        <ImageSlider images={sliderImages} />
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/category/:name" element={<Category />}></Route>
+          </Routes>
 
-        <div className="max-w-7xl mx-auto p-8 flex flex-col gap-20">
-          <FeaturesSection />
-          <TopProductsSection />
-        </div>
-        <TrendingLooksSection />
-        <div className="max-w-7xl mx-auto py-16 px-8 flex flex-col gap-20">
-          <SaleProductSection />
-          <BigSaleBar />
-          <NewArrivalSection />
-          <SubscribeSection />
-        </div>
-        <MobileNavigation />
-        <Footer />
-        <div className="mt-15 sm:mt-0"></div>
-      </ProductsContext.Provider>
+          <MobileNavigation />
+          <Footer />
+          <div className="mt-15 sm:mt-0"></div>
+        </ProductsContext.Provider>
+      </BrowserRouter>
     </>
   );
 }

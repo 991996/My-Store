@@ -52,11 +52,13 @@ export const categories = [
   {
     id: 1,
     name: "Women",
+    JSON: "women's clothing",
     image: woman,
   },
   {
     id: 2,
     name: "Men",
+    JSON: "men's clothing",
     image: man,
   },
   {
@@ -81,7 +83,8 @@ export const categories = [
   },
   {
     id: 7,
-    name: "Jalwary",
+    name: "Jewelery",
+    JSON: "jewelery",
     image: jalwary,
   },
   {
@@ -92,6 +95,7 @@ export const categories = [
   {
     id: 9,
     name: "Electronics",
+    JSON: "electronics",
     image: electronics,
   },
 ];
