@@ -4,12 +4,13 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useState } from "react";
+import { useContext } from "react";
+import { FiltersContext } from "@/contexts/FiltersContext";
 
 const sizes = ["XXL", "XL", "L", "M", "S", "XS"];
 
 function SizeAccordion() {
-  const [size, setSize] = useState(null);
+  const { filters, setFilters } = useContext(FiltersContext);
   return (
     <>
       <Accordion type="single" collapsible className="border p-2">
@@ -26,9 +27,11 @@ function SizeAccordion() {
                   className={`w-[30px] aspect-square mx-1 cursor-pointer border border-gray-200
                      hover:bg-blue hover:text-gray-100 text-xs duration-300
                       ${
-                        s === size ? "bg-blue text-gray-100" : "text-gray-500"
+                        s === filters.size
+                          ? "bg-blue text-gray-100"
+                          : "text-gray-500"
                       }`}
-                  onClick={() => setSize(s)}
+                  onClick={() => setFilters({ ...filters, size: s })}
                 >
                   {s}
                 </button>

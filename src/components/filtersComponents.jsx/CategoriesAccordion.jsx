@@ -26,7 +26,7 @@ function CategoriesAccordion() {
           </AccordionTrigger>
           {Object.entries(categories).map(([category, count]) => {
             return (
-              <AccordionContent>
+              <AccordionContent key={category}>
                 <Link
                   to={`/category/${encodeURIComponent(category)}`}
                   key={category}

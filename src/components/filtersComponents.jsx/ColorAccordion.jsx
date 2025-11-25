@@ -4,7 +4,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useState } from "react";
+import { FiltersContext } from "@/contexts/FiltersContext";
+import { useContext } from "react";
 
 const colors = [
   { name: "Red", value: "#ef4444" },
@@ -15,7 +16,8 @@ const colors = [
 ];
 
 function ColorAccordion() {
-  const [color, setColor] = useState(null);
+  // const [color, setColor] = useState(null);
+  const { filters, setFilters } = useContext(FiltersContext);
   return (
     <>
       <Accordion type="single" collapsible className="border p-2">
@@ -32,12 +34,12 @@ function ColorAccordion() {
                   className={` aspect-square rounded-full mx-1 cursor-pointer
                     ${c.border ? "border-2" : ""}
                     ${
-                      c.name === color
+                      c.name === filters.color
                         ? "border-2 border-gray-500 w-10"
                         : "w-[30px]"
                     }`}
                   style={{ backgroundColor: c.value }}
-                  onClick={() => setColor(c.name)}
+                  onClick={() => setFilters({ ...filters, color: c.name })}
                 ></button>
               );
             })}
