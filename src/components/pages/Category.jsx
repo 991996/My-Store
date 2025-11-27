@@ -26,6 +26,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { FiltersContext } from "@/contexts/FiltersContext";
+import NoProductsYet from "./NoProductsYet";
 
 function Category() {
   const products = useContext(ProductsContext);
@@ -39,7 +40,6 @@ function Category() {
   // Category`s name
   const { name } = useParams();
   const decodedName = decodeURIComponent(name);
-  // const filteredProducts = products.filter((p) => p.category === decodedName);
   const filteredProducts = useMemo(() => {
     // filter by category
     let finalList = products.filter((p) => {
@@ -66,75 +66,140 @@ function Category() {
       default:
         break;
     }
-    return finalList.slice(0, filters.show);
+    return finalList;
   }, [products, decodedName, filters]);
 
+  const pagination = Math.ceil(filteredProducts.length / filters.show);
+  const [pageActive, setPageActive] = useState(1);
+  let pages = [];
+  if (pagination > 1) {
+    for (let i = 1; i <= pagination; i++) {
+      pages.push(
+        <PaginationItem
+          key={i}
+          onClick={() => {
+            setPageActive(i);
+          }}
+        >
+          <PaginationLink href="#" isActive={pageActive === i}>
+            {i}
+          </PaginationLink>
+        </PaginationItem>
+      );
+    }
+    if (pageActive + 1 === pagination)
+      pages = pages.slice(pageActive - 4, pagination);
+    else if (pageActive === pagination)
+      pages = pages.slice(pageActive - 5, pagination);
+    else if (pageActive > 4)
+      pages = pages.slice(pageActive - 3, pageActive + 2);
+    else pages = pages.slice(0, 5);
+  }
+  console.log(filteredProducts);
+
   return (
-    <FiltersContext.Provider value={{ filters, setFilters }}>
-      <div className="max-w-7xl mx-auto p-8 grid grid-cols-4">
-        <div className="flex flex-col">
-          <CategoriesAccordion />
-          <PriceAccordion />
-          <ColorAccordion />
-          <SizeAccordion />
+    <>
+      <FiltersContext.Provider value={{ filters, setFilters }}>
+        <div className="max-w-7xl mx-auto p-8 grid grid-cols-4">
+          <div className="flex flex-col">
+            <CategoriesAccordion />
+            <PriceAccordion />
+            <ColorAccordion />
+            <SizeAccordion />
+          </div>
+
+          <div className="px-5 col-span-3">
+            {filteredProducts.length !== 0 ? (
+              <div className="flex flex-col gap-4">
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-2 text-gray-500">
+                    <p className="text-sm">Sort by:</p>
+                    <Select
+                      onValueChange={(value) =>
+                        setFilters({ ...filters, sort: value })
+                      }
+                    >
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Default sorting" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="newest">Newest</SelectItem>
+                        <SelectItem value="rating">Rating</SelectItem>
+                        <SelectItem value="low-high">
+                          Price: Low to High
+                        </SelectItem>
+                        <SelectItem value="high-low">
+                          Price: High to Low
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <ShowSelect />
+                </div>
+                <div className="grid grid-cols-3 gap-5">
+                  {filteredProducts
+                    .slice(
+                      filters.show * (pageActive - 1),
+                      filters.show * pageActive
+                    )
+                    .map((p) => {
+                      return <ProductCard key={p.id} product={p} />;
+                    })}
+                </div>
+                <div className="flex justify-between items-center w-full">
+                  <ShowSelect />
+                  {pagination === 1 ? (
+                    <></>
+                  ) : (
+                    <Pagination className="mx-0 justify-end">
+                      <PaginationContent>
+                        {pageActive === 1 ? (
+                          <></>
+                        ) : (
+                          <PaginationItem
+                            onClick={() => setPageActive((prev) => prev - 1)}
+                          >
+                            <PaginationPrevious href="#" />
+                          </PaginationItem>
+                        )}
+                        {pageActive > 4 ? (
+                          <PaginationItem>
+                            <PaginationEllipsis />
+                          </PaginationItem>
+                        ) : (
+                          <></>
+                        )}
+                        {pages}
+
+                        {pageActive + 3 > pagination ? (
+                          <></>
+                        ) : (
+                          <PaginationItem>
+                            <PaginationEllipsis />
+                          </PaginationItem>
+                        )}
+
+                        {pageActive < pagination ? (
+                          <PaginationItem
+                            onClick={() => setPageActive((prev) => prev + 1)}
+                          >
+                            <PaginationNext href="#" />
+                          </PaginationItem>
+                        ) : (
+                          <></>
+                        )}
+                      </PaginationContent>
+                    </Pagination>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <NoProductsYet />
+            )}
+          </div>
         </div>
-        <div className="flex flex-col gap-4 px-5 col-span-3">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center gap-2 text-gray-500">
-              <p className="text-sm">Sort by:</p>
-              <Select
-                onValueChange={(value) =>
-                  setFilters({ ...filters, sort: value })
-                }
-              >
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Default sorting" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="newest">Newest</SelectItem>
-                  <SelectItem value="rating">Rating</SelectItem>
-                  <SelectItem value="low-high">Price: Low to High</SelectItem>
-                  <SelectItem value="high-low">Price: High to Low</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <ShowSelect />
-          </div>
-          <div className="grid grid-cols-3 gap-5">
-            {filteredProducts.map((p) => {
-              return <ProductCard key={p.id} product={p} />;
-            })}
-          </div>
-          <div className="flex justify-between items-center w-full">
-            <ShowSelect />
-            <Pagination>
-              <PaginationContent>
-                <PaginationItem>
-                  <PaginationPrevious href="#" />
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#" isActive>
-                    1
-                  </PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#">2</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#">3</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationEllipsis />
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationNext href="#" />
-                </PaginationItem>
-              </PaginationContent>
-            </Pagination>
-          </div>
-        </div>
-      </div>
-    </FiltersContext.Provider>
+      </FiltersContext.Provider>
+    </>
   );
 }
 

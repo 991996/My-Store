@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 function Logo({ color }) {
   return (
-    <>
+    <Link to="/">
       {color === "white" ? (
         <span className="uppercase text-3xl lg:text-4xl font-bold text-white">
           rk-store
@@ -10,7 +12,7 @@ function Logo({ color }) {
           rk-store
         </span>
       )}
-    </>
+    </Link>
   );
 }
 

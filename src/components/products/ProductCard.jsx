@@ -1,10 +1,12 @@
 import { Heart } from "lucide-react";
 import { FaStar, FaStarHalf } from "react-icons/fa";
 import { useState } from "react";
+import ProductViewDialog from "./ProductViewDialog";
 
 function ProductCard({ product }) {
   const isInteger = Number.isInteger(product.price);
   const [hoverImage, setHoverImage] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
 
   function handleRate() {
     const rate = Math.round(product.rating.rate * 2) / 2;
@@ -34,10 +36,13 @@ function ProductCard({ product }) {
             className=" object-contain w-full aspect-square bg-gray-100 p-8"
           />
           <div
-            className={`${
+            className={`hidden md:flex ${
               hoverImage ? "opacity-100" : "opacity-0"
-            } absolute h-[20%] bottom-0 w-full bg-mustard flex justify-center items-center
+            } absolute h-[20%] bottom-0 w-full bg-mustard justify-center items-center
           text-gray-600 text-[17px] duration-300`}
+            onClick={() => {
+              setOpenDialog(true);
+            }}
           >
             Quick view
           </div>
@@ -64,6 +69,14 @@ function ProductCard({ product }) {
           </span>
         </div>
       </div>
+
+      {/* Dialog */}
+      <ProductViewDialog
+        open={openDialog}
+        onOpenChange={setOpenDialog}
+        product={product}
+        handleRate={handleRate}
+      />
     </>
   );
 }

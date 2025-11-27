@@ -19,7 +19,12 @@ function CategoriesAccordion() {
 
   return (
     <>
-      <Accordion type="single" collapsible className="border p-2">
+      <Accordion
+        type="single"
+        collapsible
+        className="border p-2"
+        defaultValue="item-1"
+      >
         <AccordionItem value="item-1">
           <AccordionTrigger className="text-gray-800 font-semibold uppercase">
             Categories
