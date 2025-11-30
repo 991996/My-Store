@@ -29,7 +29,7 @@ import { FiltersContext } from "@/contexts/FiltersContext";
 import NoProductsYet from "./NoProductsYet";
 
 function Category() {
-  const products = useContext(ProductsContext);
+  const { products } = useContext(ProductsContext);
   const [filters, setFilters] = useState({
     price: [0, 1000],
     color: null,
@@ -95,7 +95,6 @@ function Category() {
       pages = pages.slice(pageActive - 3, pageActive + 2);
     else pages = pages.slice(0, 5);
   }
-  console.log(filteredProducts);
 
   return (
     <>

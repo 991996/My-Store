@@ -2,6 +2,7 @@ import { Heart } from "lucide-react";
 import { FaStar, FaStarHalf } from "react-icons/fa";
 import { useState } from "react";
 import ProductViewDialog from "./ProductViewDialog";
+import { Link } from "react-router-dom";
 
 function ProductCard({ product }) {
   const isInteger = Number.isInteger(product.price);
@@ -30,11 +31,13 @@ function ProductCard({ product }) {
           onMouseEnter={() => setHoverImage(true)}
           onMouseLeave={() => setHoverImage(false)}
         >
-          <img
-            src={product.image}
-            alt="Product Image"
-            className=" object-contain w-full aspect-square bg-gray-100 p-8"
-          />
+          <Link to="/product-details" state={{ product: product }}>
+            <img
+              src={product.image}
+              alt="Product Image"
+              className=" object-contain w-full aspect-square bg-gray-100 p-8"
+            />
+          </Link>
           <div
             className={`hidden md:flex ${
               hoverImage ? "opacity-100" : "opacity-0"

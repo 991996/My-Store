@@ -1,11 +1,11 @@
 import { useContext } from "react";
-import ProductCard from "./ProductCard";
 import { ProductsContext } from "@/contexts/ProductsContext";
 import ColorfulLine from "../ColorfulLine";
 import ProductsSwiper from "./ProductsSwiper";
 
 function NewArrivalSection() {
-  const products = useContext(ProductsContext).slice(0, 8);
+  let { products } = useContext(ProductsContext);
+  products = products.slice(0, 8);
   return (
     <div className="flex flex-col justify-center items-center gap-10">
       <div className="flex flex-col gap-3">

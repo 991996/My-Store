@@ -7,7 +7,7 @@ import MyButton from "./MyButton";
 
 function TrendingLooksSection() {
   const selectedIds = [3, 4, 7];
-  const products = useContext(ProductsContext);
+  const { products } = useContext(ProductsContext);
   const filteredProducts = products.filter((p) => {
     return selectedIds.includes(p.id);
   });

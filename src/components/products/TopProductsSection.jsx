@@ -5,7 +5,8 @@ import ColorfulLine from "../ColorfulLine";
 import ProductsSwiper from "./ProductsSwiper";
 
 function TopProductsSection() {
-  const products = useContext(ProductsContext).filter((p) => p.rating.rate > 4);
+  let { products } = useContext(ProductsContext);
+  products = products.filter((p) => p.rating.rate > 4);
   return (
     <div className="flex flex-col justify-center items-center gap-10">
       <div className="flex flex-col gap-3">

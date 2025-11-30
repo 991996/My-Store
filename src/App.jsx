@@ -11,10 +11,26 @@ import Category from "./components/pages/Category";
 import Footer from "./components/Footer";
 import MobileNavigation from "./components/MobileNavigation";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ProductPage from "./components/pages/ProductPage";
+import { FaStar, FaStarHalf } from "react-icons/fa";
 
 let cancelAxios = null;
 function App() {
   const [products, setProducts] = useState([]);
+  function handleRate(product) {
+    const rate = Math.round(product.rating.rate * 2) / 2;
+    const stars = [];
+    for (let i = 0; i < Math.floor(rate); i++) {
+      stars.push(<FaStar key={i} size={15} className="text-yellow-400" />);
+    }
+    if (rate % 1 !== 0) {
+      stars.push(
+        <FaStarHalf key="half" size={15} className="text-yellow-400" />
+      );
+    }
+
+    return stars;
+  }
   useEffect(() => {
     // Make a request for a user with a given ID
     axios
@@ -37,7 +53,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <ProductsContext.Provider value={products}>
+        <ProductsContext.Provider value={{ products, handleRate }}>
           <div className="max-w-7xl mx-auto p-8">
             <Header />
             <div className=" hidden lg:flex justify-between mt-5">
@@ -50,6 +66,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/category/:name" element={<Category />}></Route>
+            <Route path="/product-details" element={<ProductPage />}></Route>
           </Routes>
 
           <MobileNavigation />

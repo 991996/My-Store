@@ -9,7 +9,7 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 function CategoriesAccordion() {
-  const products = useContext(ProductsContext);
+  const { products } = useContext(ProductsContext);
   const [categorySelected, setCategorySelected] = useState(null);
 
   const categories = products.reduce((acc, product) => {

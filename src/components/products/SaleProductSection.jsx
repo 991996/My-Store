@@ -5,7 +5,8 @@ import ColorfulLine from "../ColorfulLine";
 import ProductsSwiper from "./ProductsSwiper";
 
 function SaleProductSection() {
-  const products = useContext(ProductsContext).slice(0, 10);
+  let { products } = useContext(ProductsContext);
+  products = products.slice(0, 10);
   return (
     <div className="flex flex-col justify-center items-center gap-10">
       <div className="flex flex-col gap-3">

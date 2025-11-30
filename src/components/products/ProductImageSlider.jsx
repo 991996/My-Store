@@ -5,8 +5,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 
 export default function ProductImageSlider({ images }) {
@@ -97,9 +95,8 @@ export default function ProductImageSlider({ images }) {
         <Carousel>
           <CarouselContent>
             {images.map((img, i) => (
-              <CarouselItem className="basis-1/4">
+              <CarouselItem className="basis-1/4" key={i}>
                 <img
-                  key={i}
                   src={img}
                   ref={(el) => (thumbnailsRef.current[i] = el)}
                   alt={`thumb ${i}`}
