@@ -13,6 +13,8 @@ import MobileNavigation from "./components/MobileNavigation";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProductPage from "./components/pages/ProductPage";
 import { FaStar, FaStarHalf } from "react-icons/fa";
+import GoToTop from "./components/GoToTop";
+import WishList from "./components/pages/WishList";
 
 let cancelAxios = null;
 function App() {
@@ -52,28 +54,28 @@ function App() {
   }, []);
   return (
     <>
-      <BrowserRouter>
-        <ProductsContext.Provider value={{ products, handleRate }}>
-          <div className="max-w-7xl mx-auto p-8">
-            <Header />
-            <div className=" hidden lg:flex justify-between mt-5">
-              {categories.map((c) => {
-                return <CategoryCircle key={c.id} category={c} />;
-              })}
-            </div>
+      <ProductsContext.Provider value={{ products, handleRate }}>
+        <div className="max-w-7xl mx-auto p-8">
+          <Header />
+          <div className=" hidden lg:flex justify-between mt-5">
+            {categories.map((c) => {
+              return <CategoryCircle key={c.id} category={c} />;
+            })}
           </div>
+        </div>
 
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/category/:name" element={<Category />}></Route>
-            <Route path="/product-details" element={<ProductPage />}></Route>
-          </Routes>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/category/:name" element={<Category />}></Route>
+          <Route path="/product-details" element={<ProductPage />}></Route>
+          <Route path="/wishlist" element={<WishList />}></Route>
+        </Routes>
+        <GoToTop />
 
-          <MobileNavigation />
-          <Footer />
-          <div className="mt-15 sm:mt-0"></div>
-        </ProductsContext.Provider>
-      </BrowserRouter>
+        <MobileNavigation />
+        <Footer />
+        <div className="mt-15 sm:mt-0"></div>
+      </ProductsContext.Provider>
     </>
   );
 }

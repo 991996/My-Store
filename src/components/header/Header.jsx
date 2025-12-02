@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Logo from "../Logo";
 import SearchBar from "./SearchBar";
 import SideMenu from "./SideMenu";
 import SignIn from "./SignIn";
 import TopHeader from "./TopHeader";
 import { Heart, Handbag, TextAlignJustify } from "lucide-react";
+import { AuthContext } from "@/contexts/AuthContext";
+import { Link } from "react-router-dom";
 
 function Header() {
   const [sideMenu, setSideMenu] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,29 +44,29 @@ function Header() {
 
         <SearchBar />
         <div className="flex gap-4">
-          <a href="#">
-            <SignIn />
-          </a>
-          <div className=" relative">
-            <div
-              className=" absolute flex justify-center items-center text-[13px] text-white
+          <SignIn />
+          <div className={user ? "flex gap-4" : "hidden"}>
+            <Link to="/wishlist" className=" relative">
+              <div
+                className=" absolute flex justify-center items-center text-[13px] text-white
              h-4 w-4 bg-red-500 rounded-full right-0"
-            >
-              1
-            </div>
-            <div className="w-8 sm:w-9 md:w-10 aspect-square">
-              <Heart className="w-full h-full" strokeWidth={1} />
-            </div>
-          </div>
-          <div className=" relative">
-            <div
-              className=" absolute flex justify-center items-center text-[13px] text-white
+              >
+                1
+              </div>
+              <div className="w-8 sm:w-9 md:w-10 aspect-square">
+                <Heart className="w-full h-full" strokeWidth={1} />
+              </div>
+            </Link>
+            <div className=" relative">
+              <div
+                className=" absolute flex justify-center items-center text-[13px] text-white
              h-4 w-4 bg-red-500 rounded-full right-0"
-            >
-              3
-            </div>
-            <div className="w-8 sm:w-9 md:w-10 aspect-square">
-              <Handbag className="w-full h-full" strokeWidth={1} />
+              >
+                3
+              </div>
+              <div className="w-8 sm:w-9 md:w-10 aspect-square">
+                <Handbag className="w-full h-full" strokeWidth={1} />
+              </div>
             </div>
           </div>
         </div>

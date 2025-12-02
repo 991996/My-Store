@@ -4,6 +4,8 @@ import { useContext } from "react";
 import ProductText from "./products/ProductText";
 import Dot from "./Dot";
 import MyButton from "./MyButton";
+import { Link } from "react-router-dom";
+import { categories } from "@/data/data";
 
 function TrendingLooksSection() {
   const selectedIds = [3, 4, 7];
@@ -41,8 +43,20 @@ function TrendingLooksSection() {
 
         {/* Buttons */}
         <div className="flex flex-col gap-4">
-          <MyButton text="shop men" />
-          <MyButton text="shop woman" />
+          <Link
+            to={`/category/${encodeURIComponent(
+              categories.find((c) => c.name === "Men").JSON
+            )}`}
+          >
+            <MyButton text="shop men" />
+          </Link>
+          <Link
+            to={`/category/${encodeURIComponent(
+              categories.find((c) => c.name === "Women").JSON
+            )}`}
+          >
+            <MyButton text="shop woman" />
+          </Link>
         </div>
       </div>
       <div
