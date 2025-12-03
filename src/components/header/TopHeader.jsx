@@ -12,6 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Link } from "react-router-dom";
 
 function TopHeader() {
   return (
@@ -57,6 +58,9 @@ function TopHeader() {
               </SelectGroup>
             </SelectContent>
           </Select>
+          <Link to="/contact-us" className="hidden lg:block">
+            <p className="text-xs text-gray-500">Contact us</p>
+          </Link>
 
           <SocialMedia />
         </div>
