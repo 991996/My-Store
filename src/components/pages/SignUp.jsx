@@ -10,12 +10,12 @@ import { Button } from "../ui/button";
 import { useContext, useState } from "react";
 import { AuthContext } from "@/contexts/AuthContext";
 import { v4 as uuidv4 } from "uuid";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../Logo";
 import { Eye, EyeClosed } from "lucide-react";
 
 function SignUp() {
-  const { signUp } = useContext(AuthContext);
+  const { signUp, login } = useContext(AuthContext);
   const [newUser, setNewUser] = useState({
     id: uuidv4(),
     username: "",
@@ -25,6 +25,7 @@ function SignUp() {
   });
   const [error, setError] = useState("");
   const [passwordHidden, setPasswordHidden] = useState(true);
+  const navigate = useNavigate();
   return (
     <div className="flex justify-center items-center min-h-screen">
       <form
@@ -32,9 +33,11 @@ function SignUp() {
         onSubmit={(e) => {
           e.preventDefault();
           const result = signUp(newUser);
-          console.log(result.error);
           if (result.error) setError(result.error);
-          //if (error !== true) alert(error);
+          else if (result.success) {
+            login(newUser.email, newUser.password);
+            navigate("/");
+          }
         }}
       >
         <Logo />

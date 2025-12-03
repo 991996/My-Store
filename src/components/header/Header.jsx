@@ -57,7 +57,7 @@ function Header() {
                 <Heart className="w-full h-full" strokeWidth={1} />
               </div>
             </Link>
-            <div className=" relative">
+            <Link to="/cart" className=" relative">
               <div
                 className=" absolute flex justify-center items-center text-[13px] text-white
              h-4 w-4 bg-red-500 rounded-full right-0"
@@ -67,7 +67,7 @@ function Header() {
               <div className="w-8 sm:w-9 md:w-10 aspect-square">
                 <Handbag className="w-full h-full" strokeWidth={1} />
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </div>

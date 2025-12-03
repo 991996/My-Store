@@ -15,6 +15,7 @@ import ProductPage from "./components/pages/ProductPage";
 import { FaStar, FaStarHalf } from "react-icons/fa";
 import GoToTop from "./components/GoToTop";
 import WishList from "./components/pages/WishList";
+import Cart from "./components/pages/cart";
 
 let cancelAxios = null;
 function App() {
@@ -69,6 +70,7 @@ function App() {
           <Route path="/category/:name" element={<Category />}></Route>
           <Route path="/product-details" element={<ProductPage />}></Route>
           <Route path="/wishlist" element={<WishList />}></Route>
+          <Route path="/cart" element={<Cart />}></Route>
         </Routes>
         <GoToTop />
 
