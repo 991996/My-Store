@@ -32,7 +32,9 @@ function SignIn() {
           <DropdownMenuContent>
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>My profile</DropdownMenuItem>
+            <Link to="/account">
+              <DropdownMenuItem>My profile</DropdownMenuItem>
+            </Link>
             <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

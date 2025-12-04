@@ -10,13 +10,16 @@ import Category from "./components/pages/Category";
 
 import Footer from "./components/Footer";
 import MobileNavigation from "./components/MobileNavigation";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import ProductPage from "./components/pages/ProductPage";
 import { FaStar, FaStarHalf } from "react-icons/fa";
 import GoToTop from "./components/GoToTop";
 import WishList from "./components/pages/WishList";
 import Cart from "./components/pages/cart";
 import ContactUs from "./components/pages/ContactUs";
+import Account from "./components/pages/Account";
+import Dashboard from "./components/pages/sideBarContent/Dashboard";
+import Orders from "./components/pages/sideBarContent/Orders";
 
 let cancelAxios = null;
 function App() {
@@ -73,6 +76,10 @@ function App() {
           <Route path="/wishlist" element={<WishList />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/contact-us" element={<ContactUs />}></Route>
+          <Route path="/account" element={<Account />}>
+            <Route path="dashboard" element={<Dashboard />}></Route>
+            <Route path="orders" element={<Orders />}></Route>
+          </Route>
         </Routes>
         <GoToTop />
 

@@ -1,4 +1,4 @@
-import background from "@/assets/images/big-sale.jpg";
+import background from "@/assets/images/wishlistBG.jpg";
 import { Link } from "react-router-dom";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useContext, useState } from "react";
@@ -38,10 +38,11 @@ function WishList() {
   return (
     <div className="flex flex-col gap-10">
       {/* image section */}
-      <div
-        style={{ backgroundImage: `url(${background})` }}
-        className=" relative flex justify-center items-center text-white py-5 h-[120px] md:h-[200px]"
-      >
+      <div className=" relative flex justify-center items-center text-white py-5 h-[120px] md:h-[200px]">
+        <img
+          src={background}
+          className=" absolute w-full h-[120px] md:h-[200px] inset-0 object-cover"
+        />
         {/* overlay */}
         <div className=" absolute inset-0 w-full h-full bg-blue/60"></div>
         <div className="flex gap-3 z-10 items-start">

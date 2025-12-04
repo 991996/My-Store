@@ -1,6 +1,6 @@
 import background from "@/assets/images/big-sale.jpg";
 import MyButton from "./MyButton";
-import { Button } from "./ui/button";
+
 function BigSaleBar() {
   return (
     <>

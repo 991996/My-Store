@@ -1,4 +1,4 @@
-import background from "@/assets/images/big-sale.jpg";
+import background from "@/assets/images/cartBG.jpg";
 import { Link } from "react-router-dom";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useContext, useEffect, useState } from "react";
@@ -12,7 +12,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "../ui/button";
 import CheckOutCard from "../CheckOutCard";
 import { Plus, Minus } from "lucide-react";
 
@@ -20,13 +19,6 @@ function Cart() {
   const { products } = useContext(ProductsContext);
   const [quantityList, setQuantityList] = useState([]);
   const [total, setTotal] = useState(0);
-
-  function calcTotal() {
-    const totalPrice = products
-      .slice(0, 3)
-      .reduce((sum, p) => sum + p.price, 0);
-    setTotal(totalPrice);
-  }
 
   useEffect(() => {
     if (products.length > 0) {
@@ -44,10 +36,11 @@ function Cart() {
   return (
     <div className="flex flex-col gap-10">
       {/* image section */}
-      <div
-        style={{ backgroundImage: `url(${background})` }}
-        className=" relative flex justify-center items-center text-white py-5 h-[120px] md:h-[200px]"
-      >
+      <div className=" relative flex justify-center items-center text-white py-5 h-[120px] md:h-[200px]">
+        <img
+          src={background}
+          className=" absolute w-full h-[120px] md:h-[200px] inset-0 object-cover"
+        />
         {/* overlay */}
         <div className=" absolute inset-0 w-full h-full bg-mustard/60"></div>
         <div className="flex gap-3 z-10 items-start">
