@@ -20,6 +20,10 @@ import ContactUs from "./components/pages/ContactUs";
 import Account from "./components/pages/Account";
 import Dashboard from "./components/pages/sideBarContent/Dashboard";
 import Orders from "./components/pages/sideBarContent/Orders";
+import Downloads from "./components/pages/sideBarContent/Download";
+import Addresses from "./components/pages/sideBarContent/Addresses";
+import AccountDetails from "./components/pages/sideBarContent/AccountDetails";
+import ShippingAddress from "./components/pages/sideBarContent/ShippingAddress";
 
 let cancelAxios = null;
 function App() {
@@ -79,6 +83,13 @@ function App() {
           <Route path="/account" element={<Account />}>
             <Route path="dashboard" element={<Dashboard />}></Route>
             <Route path="orders" element={<Orders />}></Route>
+            <Route path="downloads" element={<Downloads />}></Route>
+            <Route path="addresses" element={<Addresses />}></Route>
+            <Route path="account-details" element={<AccountDetails />}></Route>
+            <Route
+              path="shipping-address"
+              element={<ShippingAddress />}
+            ></Route>
           </Route>
         </Routes>
         <GoToTop />

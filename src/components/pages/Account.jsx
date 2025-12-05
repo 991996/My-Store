@@ -1,5 +1,5 @@
 import background from "@/assets/images/accountBG.jpg";
-import { Link, Outlet, Route, Router, Routes } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import {
   LayoutDashboard,
@@ -12,8 +12,12 @@ import {
   LogOut,
   Heart,
 } from "lucide-react";
+import { useState } from "react";
+import { AuthContext } from "@/contexts/AuthContext";
+import { useContext } from "react";
 
 function Account() {
+  const [sidebarActive, setSidebarActive] = useState(0);
   const sidebar = [
     {
       name: "Dashboard",
@@ -27,35 +31,32 @@ function Account() {
     },
     {
       name: "Downloads",
-      link: "",
+      link: "downloads",
       icon: <CloudDownload />,
     },
     {
       name: "Addresses",
-      link: "",
+      link: "addresses",
       icon: <MapPin />,
     },
     {
       name: "Account Details",
-      link: "",
+      link: "account-details",
       icon: <UserRound />,
     },
     {
       name: "Shipping Address",
-      link: "",
+      link: "shipping-address",
       icon: <Truck />,
     },
     {
-      name: "Whishlist",
-      link: "",
+      name: "Wishlist",
+      link: "../wishlist",
       icon: <Heart />,
     },
-    {
-      name: "Logout",
-      link: "",
-      icon: <LogOut />,
-    },
   ];
+  const { logout } = useContext(AuthContext);
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col gap-10">
       {/* image section */}
@@ -83,14 +84,25 @@ function Account() {
 
       <div className="flex flex-col gap-10 lg:flex-row justify-between w-[90%] mx-auto py-8">
         {/* SIDEBAR */}
-        <div className="w-1/3">
+        <div className="w-full lg:w-1/3">
           <h1 className=" tracking-wide mb-2 font-bold uppercase">
             My account
           </h1>
           {sidebar.map((s, index) => {
             return (
-              <div key={index} className="w-full text-gray-500">
-                <Link to={s.link} className="flex gap-3 items-center">
+              <div
+                key={index}
+                className={`w-full ${
+                  sidebarActive === index
+                    ? "text-gray-800 font-bold"
+                    : "text-gray-400"
+                }`}
+              >
+                <Link
+                  to={s.link}
+                  className="flex gap-3 items-center"
+                  onClick={() => setSidebarActive(index)}
+                >
                   <div>{s.icon}</div>
 
                   <p className="my-2">{s.name}</p>
@@ -99,6 +111,18 @@ function Account() {
               </div>
             );
           })}
+          <div
+            className="flex gap-3 items-center text-gray-400 cursor-pointer"
+            onClick={() => {
+              const result = logout();
+              if (result.success) navigate("/");
+            }}
+          >
+            <div>
+              <LogOut />
+            </div>
+            <p className="my-2">Logout</p>
+          </div>
         </div>
         {/* CONTENT */}
         <div className="w-full">
